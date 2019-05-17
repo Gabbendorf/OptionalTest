@@ -20,4 +20,8 @@ public class Member {
     public String getSurname() {
         return surname;
     }
+
+    public String getFullName() {
+        return name + " " + surname;
+    }
 }
