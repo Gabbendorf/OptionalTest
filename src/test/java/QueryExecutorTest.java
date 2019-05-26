@@ -9,7 +9,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class AllMembersQueryExecutorTest {
+public class QueryExecutorTest {
 
     @Test
     public void executesQuery() throws SQLException {
@@ -18,7 +18,7 @@ public class AllMembersQueryExecutorTest {
         Statement statement = mock(Statement.class);
         when(statement.executeQuery(anyString())).thenReturn(resultSet);
 
-        AllMembersQueryExecutor queryExecutor = new AllMembersQueryExecutor(statement);
+        QueryExecutor queryExecutor = new QueryExecutor(statement);
 
         assertEquals(resultSet, queryExecutor.executeQuery("a query"));
     }
@@ -30,7 +30,7 @@ public class AllMembersQueryExecutorTest {
         Statement statement = mock(Statement.class);
         when(statement.executeQuery(anyString())).thenThrow(SQLException.class);
 
-        AllMembersQueryExecutor queryExecutor = new AllMembersQueryExecutor(statement);
+        QueryExecutor queryExecutor = new QueryExecutor(statement);
 
         queryExecutor.executeQuery(invalidQuery);
     }

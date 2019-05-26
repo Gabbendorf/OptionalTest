@@ -28,7 +28,7 @@ public class MembersFromDB implements Members {
         } catch (SQLException e) {
             throw new ConnectionFailureException(e);
         }
-        AllMembersQueryExecutor queryExecutor = new AllMembersQueryExecutor(statement);
+        QueryExecutor queryExecutor = new QueryExecutor(statement);
         ResultSet resultSet = queryExecutor.executeQuery(query);
         return membersMapper.membersFrom(resultSet);
     }

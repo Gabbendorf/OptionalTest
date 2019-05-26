@@ -2,10 +2,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class AllMembersQueryExecutor {
+public class QueryExecutor {
     private final Statement statement;
 
-    public AllMembersQueryExecutor(Statement statement) {
+    public QueryExecutor(Statement statement) {
         this.statement = statement;
     }
 
