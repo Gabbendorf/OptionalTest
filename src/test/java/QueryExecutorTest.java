@@ -1,3 +1,5 @@
+import db.InvalidQueryException;
+import db.QueryExecutor;
 import org.junit.Test;
 
 import java.sql.ResultSet;

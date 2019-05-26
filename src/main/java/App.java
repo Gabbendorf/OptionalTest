@@ -1,3 +1,4 @@
+import db.MembersFromDB;
 import domain.Member;
 import domain.MemberFinder;
 

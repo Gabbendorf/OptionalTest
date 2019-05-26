@@ -1,3 +1,5 @@
+package db;
+
 import domain.Member;
 import domain.Members;
 
