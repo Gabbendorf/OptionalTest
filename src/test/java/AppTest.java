@@ -1,4 +1,5 @@
 import org.junit.Test;
+import ui.UI;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;

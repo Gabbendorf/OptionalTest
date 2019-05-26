@@ -1,6 +1,7 @@
 import db.MembersFromDB;
 import domain.Member;
 import domain.MemberFinder;
+import ui.UI;
 
 import java.util.List;
 import java.util.Optional;
