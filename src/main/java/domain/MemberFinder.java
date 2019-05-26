@@ -1,14 +1,17 @@
 package domain;
 
-import domain.Member;
-
-import java.util.List;
 import java.util.Optional;
 
 public class MemberFinder {
 
-    public Optional<Member> memberById(List<Member> members, int memberId) {
-        return members.stream()
+    private final Members members;
+
+    public MemberFinder(Members members) {
+        this.members = members;
+    }
+
+    public Optional<Member> memberById(int memberId) {
+        return members.allMembers().stream()
                 .filter(member -> member.getId() == memberId)
                 .findFirst();
     }

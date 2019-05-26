@@ -8,10 +8,10 @@ public class AppRunner {
 
     public static void main(String[] args) {
         String URL = "jdbc:mysql://localhost:3306/test_db";
-        MemberFinder memberFinder = new MemberFinder();
         MembersFromDB membersFromDB = new MembersFromDB(URL, "root", Optional.empty(), "members");
+        MemberFinder memberFinder = new MemberFinder(membersFromDB);
         UI ui = new UI(System.out);
-        App app = new App(ui, membersFromDB, memberFinder);
+        App app = new App(ui, memberFinder);
 
         int memberId = Integer.parseInt(args[0]);
 
