@@ -16,7 +16,7 @@ public class AppTest {
         int validMemberId = 1;
         app.lookFor(validMemberId);
 
-        assertTrue(outputStream.toString().contains("Member with id 1 found"));
+        assertTrue(outputStream.toString().contains("domain.Member with id 1 found"));
     }
 
     @Test
@@ -28,6 +28,6 @@ public class AppTest {
         int invalidMemberId = 10;
         app.lookFor(invalidMemberId);
 
-        assertTrue(outputStream.toString().contains("Member with id 10 is not a member"));
+        assertTrue(outputStream.toString().contains("domain.Member with id 10 is not a member"));
     }
 }

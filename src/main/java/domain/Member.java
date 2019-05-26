@@ -1,3 +1,5 @@
+package domain;
+
 public class Member {
     private final int id;
     private final String name;

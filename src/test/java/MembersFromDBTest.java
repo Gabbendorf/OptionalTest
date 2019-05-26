@@ -1,3 +1,4 @@
+import domain.Member;
 import org.junit.Test;
 
 import java.util.List;
@@ -5,16 +6,14 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
-public class MembersRepositoryTest {
+public class MembersFromDBTest {
     private static String URL = "jdbc:mysql://localhost:3306/test_db";
-    private static String TEST_QUERY = "SELECT member_id, name, surname FROM test";
 
     @Test
     public void getsMembersFromTestDatabase() {
+        MembersFromDB membersFromDB = new MembersFromDB(URL, "root", Optional.empty(), "test");
 
-        MembersRepository membersRepository = new MembersRepository(URL, "root", Optional.empty());
-
-        List<Member> members = membersRepository.allMembers(TEST_QUERY);
+        List<Member> members = membersFromDB.allMembers();
 
         Member member = members.get(0);
         assertEquals("Jon", member.getName());
@@ -24,8 +23,8 @@ public class MembersRepositoryTest {
 
     @Test(expected = ConnectionFailureException.class)
     public void throwsConnectionFailureExceptionWhenQueryIsInvalid() {
-        MembersRepository membersRepository = new MembersRepository(URL, "", Optional.empty());
+        MembersFromDB membersFromDB = new MembersFromDB(URL, "", Optional.empty(), "test");
 
-        membersRepository.allMembers(TEST_QUERY);
+        membersFromDB.allMembers();
     }
 }

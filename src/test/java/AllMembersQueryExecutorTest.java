@@ -20,7 +20,7 @@ public class AllMembersQueryExecutorTest {
 
         AllMembersQueryExecutor queryExecutor = new AllMembersQueryExecutor(statement);
 
-        assertEquals(resultSet, queryExecutor.executeQuery(Query.MEMBERS_QUERY));
+        assertEquals(resultSet, queryExecutor.executeQuery("a query"));
     }
 
     @Test(expected = InvalidQueryException.class)
@@ -34,5 +34,4 @@ public class AllMembersQueryExecutorTest {
 
         queryExecutor.executeQuery(invalidQuery);
     }
-
 }

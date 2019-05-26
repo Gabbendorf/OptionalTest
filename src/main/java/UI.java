@@ -1,3 +1,5 @@
+import domain.Member;
+
 import java.io.OutputStream;
 import java.io.PrintStream;
 
@@ -10,11 +12,11 @@ public class UI {
     }
 
     public void printMemberFullNameMessage(Member member) {
-        systemOut.println(String.format("Member with id %d found: \n", member.getId()));
+        systemOut.println(String.format("domain.Member with id %d found: \n", member.getId()));
         systemOut.println(member.getFullName());
     }
 
     public void printNoMemberMessage(int memberId) {
-        systemOut.println(String.format("Member with id %d is not a member", memberId));
+        systemOut.println(String.format("domain.Member with id %d is not a member", memberId));
     }
 }

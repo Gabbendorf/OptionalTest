@@ -1,3 +1,5 @@
+import domain.Member;
+import domain.MemberFinder;
 import org.junit.Test;
 
 import java.util.ArrayList;
