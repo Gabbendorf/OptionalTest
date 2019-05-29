@@ -1,5 +1,5 @@
-import db.ConnectionFailureException;
-import db.MembersFromDB;
+package db;
+
 import domain.Member;
 import org.junit.Test;
 

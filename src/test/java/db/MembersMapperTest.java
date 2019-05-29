@@ -1,4 +1,5 @@
-import db.MembersMapper;
+package db;
+
 import domain.Member;
 import org.junit.Test;
 
