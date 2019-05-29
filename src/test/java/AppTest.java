@@ -5,7 +5,6 @@ import ui.UI;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
-import java.util.Optional;
 
 import static org.junit.Assert.assertTrue;
 
@@ -35,8 +34,8 @@ public class AppTest {
 
     private App newApp(OutputStream outputStream) {
         UI ui = new UI(outputStream);
-        String URL = "jdbc:mysql://localhost:3306/test_db";
-        MembersFromDB membersFromDB = new MembersFromDB(URL, "root", Optional.empty(), "members");
+        String portForTestsDb = "8085";
+        MembersFromDB membersFromDB = new MembersFromDB(portForTestsDb, "root", "pwd");
         MemberFinder memberFinder = new MemberFinder(membersFromDB);
         return new App(ui, memberFinder);
     }

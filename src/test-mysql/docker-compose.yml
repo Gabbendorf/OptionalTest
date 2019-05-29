@@ -1,0 +1,35 @@
+version: '3'
+services:
+  db:
+    image: mysql:latest
+    container_name: new-mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 8083:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd
+      MYSQL_DATABASE: optional_db
+    volumes:
+      - ./docker-entrypoint-initdb.d/1_create_members_table.sql:/docker-entrypoint-initdb.d/1_create_members_table.sql
+      - ./docker-entrypoint-initdb.d/2_load_data.sql:/docker-entrypoint-initdb.d/2_load_data.sql
+
+  tests_db:
+    image: mysql:latest
+    container_name: tests-mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 8085:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd
+      MYSQL_DATABASE: optional_db
+    volumes:
+      - ./docker-entrypoint-initdb.d/1_create_members_table.sql:/docker-entrypoint-initdb.d/1_create_members_table.sql
+      - ./docker-entrypoint-initdb.d/3_load_test_data.sql:/docker-entrypoint-initdb.d/3_load_test_data.sql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

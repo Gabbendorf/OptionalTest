@@ -1,19 +1,18 @@
-import db.ConnectionFailureException;
-import db.MembersFromDB;
+package db;
+
 import domain.Member;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
 public class MembersFromDBTest {
-    private static String URL = "jdbc:mysql://localhost:3306/test_db";
+    private final String portForTestsDb = "8085";
 
     @Test
-    public void getsMembersFromTestDatabase() {
-        MembersFromDB membersFromDB = new MembersFromDB(URL, "root", Optional.empty(), "test");
+    public void getsMembersFromMembersTableInTestDb() {
+        MembersFromDB membersFromDB = new MembersFromDB(portForTestsDb, "root", "pwd");
 
         List<Member> members = membersFromDB.allMembers();
 
@@ -24,8 +23,9 @@ public class MembersFromDBTest {
     }
 
     @Test(expected = ConnectionFailureException.class)
-    public void throwsConnectionFailureExceptionWhenQueryIsInvalid() {
-        MembersFromDB membersFromDB = new MembersFromDB(URL, "", Optional.empty(), "test");
+    public void throwsConnectionFailureExceptionForInvalidConnectionAttempt() {
+        String invalidPassword = "";
+        MembersFromDB membersFromDB = new MembersFromDB(portForTestsDb, "root", invalidPassword);
 
         membersFromDB.allMembers();
     }
