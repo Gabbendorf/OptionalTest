@@ -11,15 +11,17 @@ public class MembersFromDB implements Members {
     private final Connection connection;
     private final MembersMapper membersMapper;
     private final String query;
+    private final String url;
 
-    public MembersFromDB(String url, String root, Optional<String> maybePassword, String tableName) {
+    public MembersFromDB(String port, String user, Optional<String> maybePassword) {
+        this.url = "jdbc:mysql://localhost:" + port + "/test_db";
         try {
-            this.connection = DriverManager.getConnection(url, root, maybePassword.orElse(null));
+            this.connection = DriverManager.getConnection(url, user, maybePassword.orElse(null));
         } catch (SQLException e) {
             throw new ConnectionFailureException(e);
         }
         this.membersMapper = new MembersMapper();
-        this.query = "SELECT member_id, name, surname FROM " + tableName;
+        this.query = "SELECT member_id, name, surname FROM members";
     }
 
     @Override

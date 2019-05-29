@@ -7,8 +7,11 @@ import java.util.Optional;
 public class AppRunner {
 
     public static void main(String[] args) {
-        String URL = "jdbc:mysql://localhost:8083/test_db";
-        MembersFromDB membersFromDB = new MembersFromDB(URL, "root", Optional.of("pwd"), "members");
+        String port = "8083";
+        String user = "root";
+        Optional<String> maybePassword = Optional.of("pwd");
+
+        MembersFromDB membersFromDB = new MembersFromDB(port, user, maybePassword);
         MemberFinder memberFinder = new MemberFinder(membersFromDB);
         UI ui = new UI(System.out);
         App app = new App(ui, memberFinder);

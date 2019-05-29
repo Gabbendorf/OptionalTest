@@ -9,11 +9,11 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 
 public class MembersFromDBTest {
-    private static String URL = "jdbc:mysql://localhost:8085/test_db";
+    private final String portForTestsDb = "8085";
 
     @Test
     public void getsMembersFromMembersTableInTestDb() {
-        MembersFromDB membersFromDB = new MembersFromDB(URL, "root", Optional.of("pwd"), "members");
+        MembersFromDB membersFromDB = new MembersFromDB(portForTestsDb, "root", Optional.of("pwd"));
 
         List<Member> members = membersFromDB.allMembers();
 
@@ -26,7 +26,7 @@ public class MembersFromDBTest {
     @Test(expected = ConnectionFailureException.class)
     public void throwsConnectionFailureExceptionForInvalidConnectionAttempt() {
         Optional<String> invalidPassword = Optional.empty();
-        MembersFromDB membersFromDB = new MembersFromDB(URL, "root", invalidPassword, "members");
+        MembersFromDB membersFromDB = new MembersFromDB(portForTestsDb, "root", invalidPassword);
 
         membersFromDB.allMembers();
     }
