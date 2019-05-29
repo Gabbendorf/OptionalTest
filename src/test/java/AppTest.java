@@ -35,8 +35,8 @@ public class AppTest {
 
     private App newApp(OutputStream outputStream) {
         UI ui = new UI(outputStream);
-        String URL = "jdbc:mysql://localhost:3306/test_db";
-        MembersFromDB membersFromDB = new MembersFromDB(URL, "root", Optional.empty(), "members");
+        String url = "jdbc:mysql://localhost:8085/test_db";
+        MembersFromDB membersFromDB = new MembersFromDB(url, "root", Optional.of("pwd"), "members");
         MemberFinder memberFinder = new MemberFinder(membersFromDB);
         return new App(ui, memberFinder);
     }
