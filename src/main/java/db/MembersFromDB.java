@@ -5,7 +5,6 @@ import domain.Members;
 
 import java.sql.*;
 import java.util.List;
-import java.util.Optional;
 
 public class MembersFromDB implements Members {
     private final Connection connection;
@@ -13,10 +12,10 @@ public class MembersFromDB implements Members {
     private final String query;
     private final String url;
 
-    public MembersFromDB(String port, String user, Optional<String> maybePassword) {
-        this.url = "jdbc:mysql://localhost:" + port + "/test_db";
+    public MembersFromDB(String port, String user, String password) {
+        this.url = "jdbc:mysql://localhost:" + port + "/optional_db";
         try {
-            this.connection = DriverManager.getConnection(url, user, maybePassword.orElse(null));
+            this.connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             throw new ConnectionFailureException(e);
         }

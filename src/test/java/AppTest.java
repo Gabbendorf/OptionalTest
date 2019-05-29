@@ -5,7 +5,6 @@ import ui.UI;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
-import java.util.Optional;
 
 import static org.junit.Assert.assertTrue;
 
@@ -36,7 +35,7 @@ public class AppTest {
     private App newApp(OutputStream outputStream) {
         UI ui = new UI(outputStream);
         String portForTestsDb = "8085";
-        MembersFromDB membersFromDB = new MembersFromDB(portForTestsDb, "root", Optional.of("pwd"));
+        MembersFromDB membersFromDB = new MembersFromDB(portForTestsDb, "root", "pwd");
         MemberFinder memberFinder = new MemberFinder(membersFromDB);
         return new App(ui, memberFinder);
     }

@@ -4,7 +4,6 @@ import domain.Member;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,7 +12,7 @@ public class MembersFromDBTest {
 
     @Test
     public void getsMembersFromMembersTableInTestDb() {
-        MembersFromDB membersFromDB = new MembersFromDB(portForTestsDb, "root", Optional.of("pwd"));
+        MembersFromDB membersFromDB = new MembersFromDB(portForTestsDb, "root", "pwd");
 
         List<Member> members = membersFromDB.allMembers();
 
@@ -25,7 +24,7 @@ public class MembersFromDBTest {
 
     @Test(expected = ConnectionFailureException.class)
     public void throwsConnectionFailureExceptionForInvalidConnectionAttempt() {
-        Optional<String> invalidPassword = Optional.empty();
+        String invalidPassword = "";
         MembersFromDB membersFromDB = new MembersFromDB(portForTestsDb, "root", invalidPassword);
 
         membersFromDB.allMembers();

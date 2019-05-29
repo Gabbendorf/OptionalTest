@@ -1,4 +1,4 @@
-USE test_db;
+USE optional_db;
 
 DROP TABLE IF EXISTS members;
 

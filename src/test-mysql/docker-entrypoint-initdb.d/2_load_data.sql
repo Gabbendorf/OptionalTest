@@ -1,4 +1,4 @@
-USE test_db;
+USE optional_db;
 
 INSERT INTO members (
     member_id,
