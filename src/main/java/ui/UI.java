@@ -1,3 +1,7 @@
+package ui;
+
+import domain.Member;
+
 import java.io.OutputStream;
 import java.io.PrintStream;
 

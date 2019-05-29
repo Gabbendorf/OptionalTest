@@ -1,3 +1,6 @@
+import domain.Member;
+import domain.MemberFinder;
+import domain.Members;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -9,23 +12,28 @@ import static org.junit.Assert.*;
 
 public class MemberFinderTest {
 
-    private final List<Member> members = new ArrayList<>(asList(new Member(1, "Homer", "Simpson")));
-
     @Test
     public void memberWithValidIdIsPresent() {
-        MemberFinder memberFinder = new MemberFinder();
+        MemberFinder memberFinder = new MemberFinder(members);
 
-        Optional<Member> maybeMember = memberFinder.memberById(members, 1);
+        Optional<Member> maybeMember = memberFinder.memberById(1);
 
         assertTrue(maybeMember.isPresent());
     }
 
     @Test
     public void memberWithInvalidIdIsNotPresent() {
-        MemberFinder memberFinder = new MemberFinder();
+        MemberFinder memberFinder = new MemberFinder(members);
 
-        Optional<Member> maybeMember = memberFinder.memberById(members, 2);
+        Optional<Member> maybeMember = memberFinder.memberById(2);
 
         assertFalse(maybeMember.isPresent());
     }
+
+    private final Members members = new Members() {
+        @Override
+        public List<Member> allMembers() {
+            return new ArrayList<>(asList(new Member(1, "Homer", "Simpson")));
+        }
+    };
 }

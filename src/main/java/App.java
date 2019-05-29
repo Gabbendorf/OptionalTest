@@ -1,20 +1,20 @@
-import java.util.List;
+import domain.Member;
+import domain.MemberFinder;
+import ui.UI;
+
 import java.util.Optional;
 
 public class App {
-    private final static String URL = "jdbc:mysql://localhost:3306/test_db";
-    private final MembersRepository membersRepository = new MembersRepository(URL, "root", Optional.empty());
-    private final MemberFinder memberFinder = new MemberFinder();
+    private final MemberFinder memberFinder;
     private final UI ui;
 
-    public App(UI ui) {
+    public App(UI ui, MemberFinder memberFinder) {
         this.ui = ui;
+        this.memberFinder = memberFinder;
     }
 
     public void lookFor(int memberId) {
-        List<Member> members = membersRepository.allMembers(Query.MEMBERS_QUERY);
-
-        Optional<Member> maybeMember = memberFinder.memberById(members, memberId);
+        Optional<Member> maybeMember = memberFinder.memberById(memberId);
 
         maybeMember.ifPresentOrElse(
                 ui::printMemberFullNameMessage,

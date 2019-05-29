@@ -1,3 +1,5 @@
+import db.MembersMapper;
+import domain.Member;
 import org.junit.Test;
 
 import java.sql.ResultSet;
